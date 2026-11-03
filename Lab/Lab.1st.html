@@ -1,0 +1,523 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Library Management System</title>
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial;
+}
+body {
+    background: #f1f4f9;
+}
+header {
+    background: #243b55;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+nav {
+    background: #141e30;
+    padding: 15px;
+    text-align: center;
+}
+nav button {
+    padding: 10px 15px;
+    margin: 5px;
+    border: none;
+    background: #3498db;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.container {
+    width: 90%;
+    margin: 25px auto;
+}
+.section {
+    display: none;
+    background: white;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+}
+h2 {
+    color: #243b55;
+    margin-bottom: 15px;
+}
+input, select, textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+.action {
+    background: #243b55;
+    color: white;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 5px;
+}
+.action:hover {
+    background: #3498db;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+th, td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+}
+th {
+    background: #243b55;
+    color: white;
+}
+.card {
+    display: inline-block;
+    background: #e3f2fd;
+    padding: 20px;
+    margin: 10px;
+    border-radius: 8px;
+    min-width: 150px;
+}
+footer {
+    background: #243b55;
+    color: white;
+    padding: 15px;
+    text-align: center;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>Library Management System</h1>
+    <p>Manage Books, Students and Study Materials</p>
+</header>
+
+<nav>
+    <button onclick="show('home')">Home</button>
+    <button onclick="show('login')">Login</button>
+    <button onclick="show('register')">Register</button>
+    <button onclick="show('books')">Books</button>
+    <button onclick="show('admin')">Admin</button>
+    <button onclick="show('history')">Borrow History</button>
+    <button onclick="show('material')">Study Material</button>
+    <button onclick="show('profile')">My Profile</button>
+    <button onclick="show('contact')">Contact</button>
+</nav>
+
+<div class="container">
+
+<!-- HOME -->
+<div id="home" class="section" style="display:block">
+    <h2>Welcome to Library</h2>
+    <p>Search books, borrow books, check fines and download study materials.</p>
+
+    <div class="card">
+        <h3>Total Books</h3>
+        <h2 id="total">0</h2>
+    </div>
+
+    <div class="card">
+        <h3>Available Books</h3>
+        <h2 id="available">0</h2>
+    </div>
+</div>
+
+<!-- LOGIN -->
+<div id="login" class="section">
+    <h2>User Login</h2>
+    <input id="email" placeholder="Enter Email">
+    <input id="password" type="password" placeholder="Enter Password">
+
+    <select id="role">
+        <option value="student">Student</option>
+        <option value="admin">Admin</option>
+    </select>
+
+    <button class="action" onclick="login()">Login</button>
+    <p id="loginMsg"></p>
+</div>
+
+<!-- REGISTER -->
+<div id="register" class="section">
+    <h2>Student Registration</h2>
+    <input id="regname" placeholder="Full Name">
+    <input id="regemail" placeholder="Email">
+    <input id="regpass" type="password" placeholder="Password">
+    <button class="action" onclick="register()">Register</button>
+</div>
+
+<!-- BOOK SEARCH -->
+<div id="books" class="section">
+    <h2>Search Books</h2>
+    <input id="search" placeholder="Search by Book Name or Author"
+           onkeyup="searchBook()">
+
+    <table>
+        <thead>
+        <tr>
+            <th>Book ID</th>
+            <th>Book Name</th>
+            <th>Author</th>
+            <th>Status</th>
+        </tr>
+        </thead>
+        <tbody id="bookList"></tbody>
+    </table>
+</div>
+
+<!-- ADMIN -->
+<div id="admin" class="section">
+    <h2>Librarian Admin Dashboard</h2>
+
+    <h3>Add Book</h3>
+    <input id="bookid" placeholder="Book ID">
+    <input id="bookname" placeholder="Book Name">
+    <input id="author" placeholder="Author Name">
+
+    <button class="action" onclick="addBook()">Add Book</button>
+
+    <hr>
+
+    <h3>Issue Book</h3>
+    <input id="issueid" placeholder="Enter Book ID">
+    <input id="student" placeholder="Student Name">
+    <button class="action" onclick="issueBook()">Issue Book</button>
+
+    <h3>Return Book</h3>
+    <input id="returnid" placeholder="Enter Book ID">
+    <button class="action" onclick="returnBook()">Return Book</button>
+
+    <h3>Delete Book</h3>
+    <input id="deleteid" placeholder="Enter Book ID">
+    <button class="action" onclick="deleteBook()">Delete Book</button>
+</div>
+
+<!-- HISTORY -->
+<div id="history" class="section">
+    <h2>My Borrow History</h2>
+    <table>
+        <tr>
+            <th>Book Name</th>
+            <th>Issue Date</th>
+            <th>Expected Return</th>
+            <th>Fine</th>
+        </tr>
+        <tbody id="historyList"></tbody>
+    </table>
+</div>
+
+<!-- MATERIAL -->
+<div id="material" class="section">
+    <h2>Study Materials</h2>
+
+    <select id="year">
+        <option value="">Select Year</option>
+        <option>1st Year</option>
+        <option>2nd Year</option>
+        <option>3rd Year</option>
+        <option>4th Year</option>
+    </select>
+
+    <select id="semester">
+        <option value="">Select Semester</option>
+        <option>Semester 1</option>
+        <option>Semester 2</option>
+    </select>
+
+    <input id="materialname" placeholder="Material Name">
+    <input type="file" id="materialfile">
+
+    <button class="action" onclick="uploadMaterial()">Upload Material</button>
+
+    <ul id="materialList"></ul>
+</div>
+
+<!-- PROFILE -->
+<div id="profile" class="section">
+    <h2>My Profile</h2>
+    <p id="profileInfo">Please login to view your profile.</p>
+</div>
+
+<!-- CONTACT -->
+<div id="contact" class="section">
+    <h2>Contact Us</h2>
+    <input placeholder="Your Name">
+    <input placeholder="Your Email">
+    <textarea placeholder="Enter your message"></textarea>
+    <button class="action" onclick="alert('Message submitted!')">
+        Submit
+    </button>
+</div>
+
+</div>
+
+<footer>
+    <p>© 2026 Library Management System</p>
+</footer>
+
+<script>
+
+let books = [
+    {id:1, name:"Python Programming", author:"Guido", status:"Available"},
+    {id:2, name:"Java Programming", author:"James Gosling", status:"Available"},
+    {id:3, name:"Web Development", author:"Jon Duckett", status:"Available"}
+];
+
+let history = [];
+let materials = [];
+let currentUser = null;
+
+function show(id) {
+    document.querySelectorAll(".section").forEach(s => {
+        s.style.display = "none";
+    });
+    document.getElementById(id).style.display = "block";
+}
+
+function displayBooks() {
+    let list = document.getElementById("bookList");
+    list.innerHTML = "";
+
+    books.forEach(b => {
+        list.innerHTML += `
+        <tr>
+            <td>${b.id}</td>
+            <td>${b.name}</td>
+            <td>${b.author}</td>
+            <td>${b.status}</td>
+        </tr>`;
+    });
+
+    document.getElementById("total").innerText = books.length;
+    document.getElementById("available").innerText =
+        books.filter(b => b.status === "Available").length;
+}
+
+function addBook() {
+    let id = Number(document.getElementById("bookid").value);
+    let name = document.getElementById("bookname").value;
+    let author = document.getElementById("author").value;
+
+    if (!id || !name || !author) {
+        alert("Enter all book details");
+        return;
+    }
+
+    if (books.some(b => b.id === id)) {
+        alert("Book ID already exists");
+        return;
+    }
+
+    books.push({
+        id:id,
+        name:name,
+        author:author,
+        status:"Available"
+    });
+
+    displayBooks();
+    alert("Book Added Successfully");
+}
+
+function deleteBook() {
+    let id = Number(document.getElementById("deleteid").value);
+    let book = books.find(b => b.id === id);
+
+    if (!book) {
+        alert("Book not found");
+        return;
+    }
+
+    if (book.status === "Issued") {
+        alert("Return the book before deleting");
+        return;
+    }
+
+    books = books.filter(b => b.id !== id);
+    displayBooks();
+    alert("Book Deleted");
+}
+
+function searchBook() {
+    let value = document.getElementById("search").value.toLowerCase();
+
+    let result = books.filter(b =>
+        b.name.toLowerCase().includes(value) ||
+        b.author.toLowerCase().includes(value)
+    );
+
+    document.getElementById("bookList").innerHTML =
+        result.map(b => `
+        <tr>
+            <td>${b.id}</td>
+            <td>${b.name}</td>
+            <td>${b.author}</td>
+            <td>${b.status}</td>
+        </tr>`).join("");
+}
+
+function issueBook() {
+    let id = Number(document.getElementById("issueid").value);
+    let student = document.getElementById("student").value;
+    let book = books.find(b => b.id === id);
+
+    if (!book || book.status !== "Available" || !student) {
+        alert("Invalid book or student details");
+        return;
+    }
+
+    book.status = "Issued";
+
+    let today = new Date();
+    let expiry = new Date();
+    expiry.setDate(expiry.getDate() + 14);
+
+    history.push({
+        name:book.name,
+        student:student,
+        issue:today.toLocaleDateString(),
+        expiry:expiry,
+        returned:false
+    });
+
+    displayHistory();
+    displayBooks();
+    alert("Book Issued Successfully");
+}
+
+function returnBook() {
+    let id = Number(document.getElementById("returnid").value);
+    let record = history.find(h =>
+        books.find(b => b.name === h.name && b.id === id) &&
+        !h.returned
+    );
+
+    if (!record) {
+        alert("No active issue found");
+        return;
+    }
+
+    record.returned = true;
+
+    let book = books.find(b => b.id === id);
+    book.status = "Available";
+
+    displayBooks();
+    displayHistory();
+    alert("Book Returned Successfully");
+}
+
+function displayHistory() {
+    document.getElementById("historyList").innerHTML =
+        history.map(h => {
+            let fine = h.returned ? 0 :
+                Math.max(0, Math.floor((new Date() - h.expiry) / 86400000)) * 5;
+
+            return `
+            <tr>
+                <td>${h.name}</td>
+                <td>${h.issue}</td>
+                <td>${h.expiry.toLocaleDateString()}</td>
+                <td>₹${fine}</td>
+            </tr>`;
+        }).join("");
+}
+
+function register() {
+    let name = document.getElementById("regname").value;
+    let email = document.getElementById("regemail").value;
+    let pass = document.getElementById("regpass").value;
+
+    if (!name || !email || !pass) {
+        alert("Enter all details");
+        return;
+    }
+
+    localStorage.setItem("user", JSON.stringify({
+        name:name, email:email, password:pass
+    }));
+
+    alert("Registration Successful");
+}
+
+function login() {
+    let role = document.getElementById("role").value;
+    let email = document.getElementById("email").value;
+    let pass = document.getElementById("password").value;
+
+    if (role === "admin" && email === "admin@gmail.com" &&
+        pass === "admin123") {
+        currentUser = {name:"Admin", role:"Admin"};
+        alert("Admin Login Successful");
+        show("admin");
+        updateProfile();
+        return;
+    }
+
+    let user = JSON.parse(localStorage.getItem("user") || "null");
+
+    if (role === "student" && user &&
+        user.email === email && user.password === pass) {
+        currentUser = {name:user.name, role:"Student"};
+        alert("Login Successful");
+        show("home");
+        updateProfile();
+    } else {
+        document.getElementById("loginMsg").innerText =
+            "Invalid Login Details";
+    }
+}
+
+function updateProfile() {
+    document.getElementById("profileInfo").innerText =
+        "Name: " + currentUser.name +
+        " | Role: " + currentUser.role;
+}
+
+function uploadMaterial() {
+    let name = document.getElementById("materialname").value;
+    let year = document.getElementById("year").value;
+    let sem = document.getElementById("semester").value;
+    let file = document.getElementById("materialfile").files[0];
+
+    if (!name || !year || !sem || !file) {
+        alert("Enter all material details and select a file");
+        return;
+    }
+
+    let url = URL.createObjectURL(file);
+
+    materials.push({name, year, sem, url});
+
+    displayMaterials();
+    alert("Material Added Successfully");
+}
+
+function displayMaterials() {
+    document.getElementById("materialList").innerHTML =
+        materials.map(m => `
+        <li>
+            ${m.name} - ${m.year} - ${m.sem}
+            <a href="${m.url}" download>Download</a>
+        </li>`).join("");
+}
+
+displayBooks();
+
+</script>
+
+</body>
+</html>
