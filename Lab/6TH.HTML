@@ -1,0 +1,514 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Online Cake Ordering System</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #fff5f7;
+        }
+
+        header {
+            background: #8e2454;
+            color: white;
+            text-align: center;
+            padding: 25px;
+        }
+
+        nav {
+            background: #c2185b;
+            padding: 15px;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 10px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: yellow;
+        }
+
+        .container {
+            width: 85%;
+            margin: 25px auto;
+        }
+
+        .section {
+            background: white;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px #ddd;
+        }
+
+        h2 {
+            color: #8e2454;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            color: #c2185b;
+            margin: 12px 0;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            background: #c2185b;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background: #8e2454;
+        }
+
+        .cakes {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .cake {
+            background: #fff0f5;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .cake img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .cake p {
+            margin: 8px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: 12px;
+            text-align: center;
+        }
+
+        th {
+            background: #c2185b;
+            color: white;
+        }
+
+        footer {
+            background: #8e2454;
+            color: white;
+            text-align: center;
+            padding: 18px;
+        }
+
+        @media(max-width: 700px) {
+            .container {
+                width: 95%;
+            }
+
+            .cakes {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            nav a {
+                display: inline-block;
+                margin: 6px;
+            }
+
+            table {
+                font-size: 12px;
+            }
+        }
+
+        @media(max-width: 450px) {
+            .cakes {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>ONLINE CAKE ORDERING SYSTEM</h1>
+    <p>Order Delicious Cakes Online</p>
+</header>
+
+<nav>
+    <a href="#home">Home</a>
+    <a href="#register">Register</a>
+    <a href="#login">Login</a>
+    <a href="#cakes">Cakes</a>
+    <a href="#cart">Cart</a>
+    <a href="#orders">My Orders</a>
+    <a href="#admin">Admin</a>
+</nav>
+
+<div class="container">
+
+    <!-- Home -->
+    <section class="section" id="home">
+        <h2>Welcome to Online Cake Shop</h2>
+
+        <p>
+            Buy delicious cakes online for birthdays,
+            weddings, anniversaries and special occasions.
+            Choose your favourite cake and order it easily.
+        </p>
+    </section>
+
+    <!-- Registration -->
+    <section class="section" id="register">
+        <h2>User Registration</h2>
+
+        <form>
+            <input type="text" placeholder="Full Name" required>
+            <input type="email" placeholder="Email Address" required>
+            <input type="tel" placeholder="Mobile Number">
+            <input type="text" placeholder="Address">
+            <input type="password" placeholder="Create Password" required>
+            <input type="password" placeholder="Confirm Password">
+
+            <button type="submit">Register</button>
+        </form>
+    </section>
+
+    <!-- Login -->
+    <section class="section" id="login">
+        <h2>User Login</h2>
+
+        <form>
+            <input type="email" placeholder="Enter Email">
+            <input type="password" placeholder="Enter Password">
+
+            <button type="button">Login</button>
+
+            <p><a href="#forgot">Forgot Password?</a></p>
+        </form>
+    </section>
+
+    <!-- Forgot Password -->
+    <section class="section" id="forgot">
+        <h2>Forgot Password</h2>
+
+        <input type="email" placeholder="Enter Registered Email">
+        <button type="button">Reset Password</button>
+    </section>
+
+    <!-- Search Cake -->
+    <section class="section" id="cakes">
+        <h2>Search Cakes</h2>
+
+        <input type="text" placeholder="Search Your Favourite Cake">
+
+        <button type="button">Search Cake</button>
+
+        <h3>Cake Categories</h3>
+
+        <select>
+            <option>Select Category</option>
+            <option>Birthday Cakes</option>
+            <option>Wedding Cakes</option>
+            <option>Anniversary Cakes</option>
+            <option>Chocolate Cakes</option>
+            <option>Fruit Cakes</option>
+        </select>
+
+        <h3>Sub Category</h3>
+
+        <select>
+            <option>Select Flavour</option>
+            <option>Chocolate</option>
+            <option>Vanilla</option>
+            <option>Strawberry</option>
+            <option>Black Forest</option>
+            <option>Red Velvet</option>
+        </select>
+
+        <h3>Filter by Price</h3>
+
+        <select>
+            <option>All Prices</option>
+            <option>Below Rs. 300</option>
+            <option>Rs. 300 - Rs. 500</option>
+            <option>Rs. 500 - Rs. 1000</option>
+            <option>Above Rs. 1000</option>
+        </select>
+
+        <button type="button">Apply Filter</button>
+    </section>
+
+    <!-- Cake List -->
+    <section class="section">
+        <h2>Available Cakes</h2>
+
+        <div class="cakes">
+
+            <div class="cake">
+                <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=500" alt="Chocolate Cake">
+                <h3>Chocolate Cake</h3>
+                <p>Rich chocolate flavour cake.</p>
+                <p>Price: Rs. 500</p>
+                <button type="button">Add to Cart</button>
+            </div>
+
+            <div class="cake">
+                <img src="https://images.unsplash.com/photo-1588195538326-c5b1e9f80a1b?w=500" alt="Strawberry Cake">
+                <h3>Strawberry Cake</h3>
+                <p>Fresh strawberry cream cake.</p>
+                <p>Price: Rs. 600</p>
+                <button type="button">Add to Cart</button>
+            </div>
+
+            <div class="cake">
+                <img src="https://images.unsplash.com/photo-1571115177098-24ec42ed204d?w=500" alt="Black Forest Cake">
+                <h3>Black Forest Cake</h3>
+                <p>Delicious black forest cake.</p>
+                <p>Price: Rs. 750</p>
+                <button type="button">Add to Cart</button>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Cake Description -->
+    <section class="section">
+        <h2>Cake Description</h2>
+
+        <h3>Chocolate Cake</h3>
+
+        <p>
+            A delicious chocolate cake prepared with
+            rich chocolate cream and fresh ingredients.
+        </p>
+
+        <p>Available Sizes: 0.5 KG, 1 KG, 2 KG</p>
+
+        <p>Available Flavours: Chocolate, Vanilla, Strawberry</p>
+
+        <label>Select Cake Size</label>
+
+        <select>
+            <option>0.5 KG</option>
+            <option>1 KG</option>
+            <option>2 KG</option>
+        </select>
+
+        <input type="text" placeholder="Enter Custom Message on Cake">
+
+        <button type="button">Add to Cart</button>
+    </section>
+
+    <!-- Shopping Cart -->
+    <section class="section" id="cart">
+        <h2>Shopping Cart</h2>
+
+        <table>
+            <tr>
+                <th>Cake Name</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Total</th>
+            </tr>
+
+            <tr>
+                <td>Chocolate Cake</td>
+                <td>1</td>
+                <td>Rs. 500</td>
+                <td>Rs. 500</td>
+            </tr>
+
+            <tr>
+                <td>Strawberry Cake</td>
+                <td>1</td>
+                <td>Rs. 600</td>
+                <td>Rs. 600</td>
+            </tr>
+        </table>
+
+        <h3>Total Amount: Rs. 1100</h3>
+
+        <button type="button">Place Order</button>
+    </section>
+
+    <!-- Shipping Address -->
+    <section class="section">
+        <h2>Shipping Address</h2>
+
+        <input type="text" placeholder="Customer Name">
+        <input type="tel" placeholder="Mobile Number">
+        <input type="text" placeholder="House / Street Address">
+        <input type="text" placeholder="City">
+        <input type="text" placeholder="State">
+        <input type="number" placeholder="PIN Code">
+
+        <button type="button">Save Address</button>
+        <button type="button">Update Address</button>
+    </section>
+
+    <!-- Payment -->
+    <section class="section">
+        <h2>Payment Details</h2>
+
+        <p>Order Amount: Rs. 1100</p>
+
+        <select>
+            <option>Select Payment Method</option>
+            <option>UPI</option>
+            <option>Debit Card</option>
+            <option>Credit Card</option>
+            <option>Net Banking</option>
+            <option>Cash on Delivery</option>
+        </select>
+
+        <button type="button">Pay Now</button>
+    </section>
+
+    <!-- My Orders -->
+    <section class="section" id="orders">
+        <h2>My Orders</h2>
+
+        <table>
+            <tr>
+                <th>Order ID</th>
+                <th>Cake Name</th>
+                <th>Amount</th>
+                <th>Status</th>
+            </tr>
+
+            <tr>
+                <td>101</td>
+                <td>Chocolate Cake</td>
+                <td>Rs. 500</td>
+                <td>Confirmed</td>
+            </tr>
+
+            <tr>
+                <td>102</td>
+                <td>Strawberry Cake</td>
+                <td>Rs. 600</td>
+                <td>Shipped</td>
+            </tr>
+        </table>
+    </section>
+
+    <!-- Shipping Status -->
+    <section class="section">
+        <h2>View Shipping Status</h2>
+
+        <input type="text" placeholder="Enter Order ID">
+
+        <button type="button">Track Order</button>
+
+        <h3>Delivery Status</h3>
+
+        <p>Order Status: <b style="color:green;">Out for Delivery</b></p>
+    </section>
+
+    <!-- Admin Dashboard -->
+    <section class="section" id="admin">
+        <h2>Admin Dashboard</h2>
+
+        <h3>Admin Login</h3>
+
+        <input type="text" placeholder="Admin Username">
+        <input type="password" placeholder="Admin Password">
+
+        <button type="button">Admin Login</button>
+
+        <h3>Manage Products / Cakes</h3>
+
+        <input type="text" placeholder="Cake Name">
+        <input type="text" placeholder="Cake Category">
+        <input type="text" placeholder="Cake Flavour">
+        <input type="number" placeholder="Cake Price">
+        <input type="number" placeholder="Available Stock">
+        <input type="file">
+
+        <textarea rows="4"
+        placeholder="Enter Cake Description"></textarea>
+
+        <button type="button">Post Cake Details</button>
+        <button type="button">Update Cake Details</button>
+        <button type="button">Delete Cake</button>
+
+        <h3>Manage Orders</h3>
+
+        <input type="number" placeholder="Enter Order ID">
+
+        <select>
+            <option>Select Order Status</option>
+            <option>Pending</option>
+            <option>Confirmed</option>
+            <option>Packed</option>
+            <option>Shipped</option>
+            <option>Out for Delivery</option>
+            <option>Delivered</option>
+            <option>Cancelled</option>
+        </select>
+
+        <button type="button">Update Order Status</button>
+
+        <h3>Shipping Location</h3>
+
+        <input type="text" placeholder="Enter Shipping Location">
+
+        <button type="button">Update Shipping Location</button>
+
+        <h3>Manage Registered Users</h3>
+
+        <button type="button">View Users</button>
+
+        <h3>Admin Reports</h3>
+
+        <button type="button">Generate Sales Report</button>
+        <button type="button">Generate Order Report</button>
+
+        <h3>Logout</h3>
+
+        <button type="button">Admin Logout</button>
+
+    </section>
+
+</div>
+
+<footer>
+    <p>Online Cake Ordering System</p>
+    <p>Copyright © 2026 All Rights Reserved</p>
+</footer>
+
+</body>
+</html>
