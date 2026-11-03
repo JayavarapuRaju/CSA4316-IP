@@ -1,0 +1,526 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Online Flight Reservation System</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f1f5f9;
+        }
+
+        header {
+            background: #002b5c;
+            color: white;
+            text-align: center;
+            padding: 25px;
+        }
+
+        nav {
+            background: #00509d;
+            padding: 15px;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 10px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: yellow;
+        }
+
+        .container {
+            width: 85%;
+            margin: 25px auto;
+        }
+
+        .section {
+            background: white;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px #ccc;
+        }
+
+        h2 {
+            color: #002b5c;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            color: #00509d;
+            margin: 15px 0;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            border: 1px solid #aaa;
+            border-radius: 5px;
+        }
+
+        button {
+            background: #007bff;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background: #002b5c;
+        }
+
+        .flight {
+            background: #e8f1ff;
+            padding: 18px;
+            margin: 12px 0;
+            border-radius: 8px;
+        }
+
+        .seats {
+            display: grid;
+            grid-template-columns: repeat(4, 55px);
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .seats button {
+            background: green;
+        }
+
+        .seats .booked {
+            background: red;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        th, td {
+            border: 1px solid #aaa;
+            padding: 12px;
+            text-align: center;
+        }
+
+        th {
+            background: #00509d;
+            color: white;
+        }
+
+        .status {
+            color: green;
+            font-weight: bold;
+        }
+
+        footer {
+            background: #002b5c;
+            color: white;
+            text-align: center;
+            padding: 18px;
+        }
+
+        @media(max-width: 600px) {
+            .container {
+                width: 95%;
+            }
+
+            nav a {
+                display: inline-block;
+                margin: 6px;
+            }
+
+            table {
+                font-size: 12px;
+            }
+
+            th, td {
+                padding: 7px;
+            }
+
+            .seats {
+                grid-template-columns: repeat(4, 45px);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>ONLINE FLIGHT RESERVATION SYSTEM</h1>
+    <p>Book Your Flight Tickets Easily and Safely</p>
+</header>
+
+<nav>
+    <a href="#home">Home</a>
+    <a href="#register">Register</a>
+    <a href="#login">Login</a>
+    <a href="#search">Search Flights</a>
+    <a href="#booking">Book Ticket</a>
+    <a href="#myticket">My Tickets</a>
+    <a href="#admin">Admin</a>
+</nav>
+
+<div class="container">
+
+    <!-- Home -->
+    <section class="section" id="home">
+        <h2>Welcome to Flight Reservation</h2>
+        <p>
+            Search flights, compare prices, select seats,
+            book tickets and manage your travel reservations
+            through our online flight reservation system.
+        </p>
+    </section>
+
+    <!-- Registration -->
+    <section class="section" id="register">
+        <h2>Student / User Registration</h2>
+
+        <form>
+            <input type="text" placeholder="Full Name" required>
+            <input type="email" placeholder="Email Address" required>
+            <input type="tel" placeholder="Mobile Number">
+            <input type="text" placeholder="Address">
+            <input type="password" placeholder="Create Password" required>
+            <input type="password" placeholder="Confirm Password">
+            <button type="submit">Register</button>
+        </form>
+    </section>
+
+    <!-- Login -->
+    <section class="section" id="login">
+        <h2>User Login</h2>
+
+        <form>
+            <input type="email" placeholder="Enter Email">
+            <input type="password" placeholder="Enter Password">
+            <button type="button">Login</button>
+            <p><a href="#forgot">Forgot Password?</a></p>
+        </form>
+    </section>
+
+    <!-- Forgot Password -->
+    <section class="section" id="forgot">
+        <h2>Forgot Password</h2>
+        <input type="email" placeholder="Enter Registered Email">
+        <button type="button">Reset Password</button>
+    </section>
+
+    <!-- Search Flights -->
+    <section class="section" id="search">
+        <h2>Search Flights</h2>
+
+        <form>
+            <label>From</label>
+            <input type="text" placeholder="Departure City">
+
+            <label>To</label>
+            <input type="text" placeholder="Destination City">
+
+            <label>Departure Date</label>
+            <input type="date">
+
+            <label>Return Date</label>
+            <input type="date">
+
+            <label>Travel Class</label>
+            <select>
+                <option>Select Class</option>
+                <option>Economy</option>
+                <option>Premium Economy</option>
+                <option>Business Class</option>
+                <option>First Class</option>
+            </select>
+
+            <label>Passengers</label>
+            <input type="number" min="1" placeholder="Number of Passengers">
+
+            <button type="button">Search Flights</button>
+        </form>
+
+        <h2>Available Flights</h2>
+
+        <div class="flight">
+            <h3>IndiGo Airlines - 6E 205</h3>
+            <p>From: Hyderabad</p>
+            <p>To: Delhi</p>
+            <p>Departure: 08:00 AM</p>
+            <p>Arrival: 10:30 AM</p>
+            <p>Available Seats: 35</p>
+            <p>Price: Rs. 4500</p>
+            <button type="button">Book Flight</button>
+        </div>
+
+        <div class="flight">
+            <h3>Air India - AI 501</h3>
+            <p>From: Chennai</p>
+            <p>To: Mumbai</p>
+            <p>Departure: 11:00 AM</p>
+            <p>Arrival: 01:00 PM</p>
+            <p>Available Seats: 25</p>
+            <p>Price: Rs. 5200</p>
+            <button type="button">Book Flight</button>
+        </div>
+    </section>
+
+    <!-- Flight Filters -->
+    <section class="section">
+        <h2>Filter Flights</h2>
+
+        <label>Airline Category</label>
+        <select>
+            <option>All Airlines</option>
+            <option>IndiGo</option>
+            <option>Air India</option>
+            <option>SpiceJet</option>
+            <option>Akasa Air</option>
+        </select>
+
+        <label>Price Range</label>
+        <select>
+            <option>All Prices</option>
+            <option>Below Rs. 3000</option>
+            <option>Rs. 3000 - Rs. 5000</option>
+            <option>Rs. 5000 - Rs. 10000</option>
+            <option>Above Rs. 10000</option>
+        </select>
+
+        <label>Travel Class</label>
+        <select>
+            <option>All Classes</option>
+            <option>Economy</option>
+            <option>Business</option>
+            <option>First Class</option>
+        </select>
+
+        <button type="button">Apply Filters</button>
+    </section>
+
+    <!-- Booking -->
+    <section class="section" id="booking">
+        <h2>Book Flight Ticket</h2>
+
+        <h3>Flight Details</h3>
+
+        <input type="text" placeholder="Flight Number">
+        <input type="text" placeholder="Departure City">
+        <input type="text" placeholder="Destination City">
+        <input type="date">
+
+        <select>
+            <option>Select Travel Class</option>
+            <option>Economy</option>
+            <option>Premium Economy</option>
+            <option>Business Class</option>
+            <option>First Class</option>
+        </select>
+
+        <h3>Passenger Details</h3>
+
+        <input type="text" placeholder="Passenger Name">
+        <input type="number" placeholder="Age">
+
+        <select>
+            <option>Select Gender</option>
+            <option>Male</option>
+            <option>Female</option>
+            <option>Other</option>
+        </select>
+
+        <input type="email" placeholder="Email Address">
+        <input type="tel" placeholder="Mobile Number">
+
+        <h3>Select Your Seat</h3>
+
+        <p>Green = Available | Red = Booked</p>
+
+        <div class="seats">
+            <button type="button">A1</button>
+            <button type="button">A2</button>
+            <button type="button">B1</button>
+            <button type="button">B2</button>
+            <button type="button">C1</button>
+            <button type="button" class="booked">C2</button>
+            <button type="button">D1</button>
+            <button type="button">D2</button>
+        </div>
+
+        <h3>Shipping / Contact Address</h3>
+        <input type="text" placeholder="Full Address">
+        <input type="text" placeholder="City">
+        <input type="text" placeholder="State">
+        <input type="number" placeholder="PIN Code">
+
+        <h3>Payment Details</h3>
+
+        <select>
+            <option>Select Payment Method</option>
+            <option>UPI</option>
+            <option>Debit Card</option>
+            <option>Credit Card</option>
+            <option>Net Banking</option>
+        </select>
+
+        <input type="number" placeholder="Ticket Amount">
+
+        <button type="button">Pay and Confirm Booking</button>
+    </section>
+
+    <!-- My Tickets -->
+    <section class="section" id="myticket">
+        <h2>My Tickets</h2>
+
+        <table>
+            <tr>
+                <th>Ticket ID</th>
+                <th>Airline</th>
+                <th>Destination</th>
+                <th>Status</th>
+            </tr>
+
+            <tr>
+                <td>FL101</td>
+                <td>IndiGo</td>
+                <td>Delhi</td>
+                <td class="status">Confirmed</td>
+            </tr>
+
+            <tr>
+                <td>FL102</td>
+                <td>Air India</td>
+                <td>Mumbai</td>
+                <td class="status">Confirmed</td>
+            </tr>
+        </table>
+    </section>
+
+    <!-- Print Ticket -->
+    <section class="section">
+        <h2>Print E-Ticket</h2>
+
+        <p>Ticket Number: FL101</p>
+        <p>Passenger Name: Raju</p>
+        <p>Airline: IndiGo Airlines</p>
+        <p>From: Hyderabad</p>
+        <p>To: Delhi</p>
+        <p>Seat Number: A1</p>
+        <p class="status">Booking Status: Confirmed</p>
+
+        <button type="button" onclick="window.print()">
+            Print Ticket
+        </button>
+    </section>
+
+    <!-- Cancel Ticket -->
+    <section class="section">
+        <h2>Cancel Flight Ticket</h2>
+
+        <input type="text" placeholder="Enter Ticket ID">
+        <input type="email" placeholder="Registered Email">
+        <button type="button">Cancel Ticket</button>
+    </section>
+
+    <!-- Feedback -->
+    <section class="section">
+        <h2>Customer Feedback</h2>
+
+        <input type="text" placeholder="Enter Your Name">
+        <input type="email" placeholder="Enter Email">
+
+        <select>
+            <option>Rate Your Experience</option>
+            <option>5 Stars</option>
+            <option>4 Stars</option>
+            <option>3 Stars</option>
+            <option>2 Stars</option>
+            <option>1 Star</option>
+        </select>
+
+        <textarea rows="4"
+        placeholder="Write Your Feedback"></textarea>
+
+        <button type="button">Submit Feedback</button>
+    </section>
+
+    <!-- Admin Dashboard -->
+    <section class="section" id="admin">
+        <h2>Admin Dashboard</h2>
+
+        <h3>Administrator Login</h3>
+
+        <input type="text" placeholder="Admin Username">
+        <input type="password" placeholder="Admin Password">
+        <button type="button">Admin Login</button>
+
+        <h3>Manage Flight Details</h3>
+
+        <input type="text" placeholder="Flight Number">
+        <input type="text" placeholder="Airline Name">
+        <input type="text" placeholder="Departure City">
+        <input type="text" placeholder="Destination City">
+        <input type="time">
+        <input type="number" placeholder="Available Seats">
+        <input type="number" placeholder="Ticket Price">
+        <input type="file">
+
+        <textarea rows="3"
+        placeholder="Flight Description"></textarea>
+
+        <button type="button">Add / Update Flight</button>
+
+        <h3>Manage Products / Services</h3>
+        <input type="text" placeholder="Service Name">
+        <input type="number" placeholder="Service Price">
+        <input type="file">
+        <button type="button">Post Details</button>
+
+        <h3>Manage Customer Orders / Bookings</h3>
+        <button type="button">View All Bookings</button>
+
+        <h3>Update Booking Status</h3>
+        <select>
+            <option>Select Status</option>
+            <option>Confirmed</option>
+            <option>Pending</option>
+            <option>Cancelled</option>
+        </select>
+        <button type="button">Update Status</button>
+
+        <h3>Manage Users</h3>
+        <button type="button">View Registered Users</button>
+
+        <h3>Admin Reports</h3>
+        <button type="button">Generate Booking Report</button>
+        <button type="button">Generate Payment Report</button>
+
+        <h3>Logout</h3>
+        <button type="button">Admin Logout</button>
+    </section>
+
+</div>
+
+<footer>
+    <p>Online Flight Reservation System</p>
+    <p>Copyright © 2026 All Rights Reserved</p>
+</footer>
+
+</body>
+</html>
