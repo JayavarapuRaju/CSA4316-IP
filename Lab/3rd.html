@@ -1,0 +1,386 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Online Bus Ticket Booking</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f2f5f9;
+        }
+
+        header {
+            background: #003366;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        nav {
+            background: #00509d;
+            padding: 15px;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 15px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: yellow;
+        }
+
+        .container {
+            width: 85%;
+            margin: 25px auto;
+        }
+
+        .section {
+            background: white;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px #ccc;
+        }
+
+        h2 {
+            color: #003366;
+            margin-bottom: 15px;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            border: 1px solid #aaa;
+            border-radius: 5px;
+        }
+
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background: #003366;
+        }
+
+        .bus {
+            background: #e8f1ff;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+        }
+
+        .seats {
+            display: grid;
+            grid-template-columns: repeat(4, 50px);
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .seats button {
+            background: green;
+            padding: 10px;
+        }
+
+        .seats button.booked {
+            background: red;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #aaa;
+            padding: 12px;
+            text-align: center;
+        }
+
+        th {
+            background: #00509d;
+            color: white;
+        }
+
+        footer {
+            background: #003366;
+            color: white;
+            text-align: center;
+            padding: 15px;
+        }
+
+        @media(max-width: 600px) {
+            .container {
+                width: 95%;
+            }
+
+            nav a {
+                display: inline-block;
+                margin: 6px;
+            }
+
+            .seats {
+                grid-template-columns: repeat(4, 45px);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>ONLINE BUS TICKET BOOKING</h1>
+    <p>Book Your Journey Easily and Safely</p>
+</header>
+
+<nav>
+    <a href="#home">Home</a>
+    <a href="#search">Search Bus</a>
+    <a href="#register">Register</a>
+    <a href="#login">Login</a>
+    <a href="#booking">Booking</a>
+    <a href="#admin">Admin</a>
+</nav>
+
+<div class="container">
+
+    <!-- Home -->
+    <section class="section" id="home">
+        <h2>Welcome to Bus Booking</h2>
+        <p>Book bus tickets online, select your seats,
+        make payments and manage your bookings easily.</p>
+    </section>
+
+    <!-- Bus Search -->
+    <section class="section" id="search">
+        <h2>Search Available Buses</h2>
+
+        <form>
+            <label>From</label>
+            <input type="text" placeholder="Enter Starting Location">
+
+            <label>To</label>
+            <input type="text" placeholder="Enter Destination">
+
+            <label>Journey Date</label>
+            <input type="date">
+
+            <label>Bus Type</label>
+            <select>
+                <option>AC Bus</option>
+                <option>Volvo</option>
+                <option>Sleeper Coach</option>
+                <option>Non-AC Bus</option>
+            </select>
+
+            <button type="button">Search Bus</button>
+        </form>
+
+        <h2>Available Buses</h2>
+
+        <div class="bus">
+            <h3>Volvo AC Bus</h3>
+            <p>Hyderabad to Vijayawada</p>
+            <p>Time: 9:00 PM</p>
+            <p>Available Seats: 20</p>
+            <p>Ticket Price: Rs. 800</p>
+            <button type="button">Book Now</button>
+        </div>
+
+        <div class="bus">
+            <h3>Sleeper Coach</h3>
+            <p>Hyderabad to Chennai</p>
+            <p>Time: 8:00 PM</p>
+            <p>Available Seats: 15</p>
+            <p>Ticket Price: Rs. 1200</p>
+            <button type="button">Book Now</button>
+        </div>
+    </section>
+
+    <!-- Registration -->
+    <section class="section" id="register">
+        <h2>User Registration</h2>
+
+        <form>
+            <input type="text" placeholder="Full Name" required>
+            <input type="email" placeholder="Email Address" required>
+            <input type="tel" placeholder="Mobile Number">
+            <input type="password" placeholder="Create Password" required>
+            <input type="password" placeholder="Confirm Password">
+            <button type="submit">Register</button>
+        </form>
+    </section>
+
+    <!-- Login -->
+    <section class="section" id="login">
+        <h2>User Login</h2>
+
+        <form>
+            <input type="email" placeholder="Enter Email">
+            <input type="password" placeholder="Enter Password">
+            <button type="button">Login</button>
+            <p><a href="#forgot">Forgot Password?</a></p>
+        </form>
+    </section>
+
+    <!-- Forgot Password -->
+    <section class="section" id="forgot">
+        <h2>Forgot Password</h2>
+        <input type="email" placeholder="Enter Registered Email">
+        <button type="button">Reset Password</button>
+    </section>
+
+    <!-- Seat Selection and Booking -->
+    <section class="section" id="booking">
+        <h2>Select Your Seats</h2>
+
+        <p>Green = Available | Red = Booked</p>
+
+        <div class="seats">
+            <button type="button">1</button>
+            <button type="button">2</button>
+            <button type="button">3</button>
+            <button type="button">4</button>
+            <button type="button">5</button>
+            <button type="button" class="booked">6</button>
+            <button type="button">7</button>
+            <button type="button">8</button>
+        </div>
+
+        <h2>Passenger Details</h2>
+        <input type="text" placeholder="Passenger Name">
+        <input type="number" placeholder="Age">
+
+        <select>
+            <option>Select Gender</option>
+            <option>Male</option>
+            <option>Female</option>
+            <option>Other</option>
+        </select>
+
+        <input type="email" placeholder="Email Address">
+        <input type="tel" placeholder="Mobile Number">
+
+        <h2>Payment Details</h2>
+        <select>
+            <option>Select Payment Method</option>
+            <option>UPI</option>
+            <option>Credit Card</option>
+            <option>Debit Card</option>
+            <option>Net Banking</option>
+        </select>
+
+        <button type="button">Confirm Booking</button>
+    </section>
+
+    <!-- Cancel Booking -->
+    <section class="section">
+        <h2>Cancel Booking Ticket</h2>
+        <input type="text" placeholder="Enter Booking ID">
+        <input type="email" placeholder="Registered Email">
+        <button type="button">Cancel Ticket</button>
+    </section>
+
+    <!-- Booking History -->
+    <section class="section">
+        <h2>Booking History</h2>
+
+        <table>
+            <tr>
+                <th>Booking ID</th>
+                <th>Bus Name</th>
+                <th>Destination</th>
+                <th>Status</th>
+            </tr>
+
+            <tr>
+                <td>101</td>
+                <td>Volvo AC</td>
+                <td>Vijayawada</td>
+                <td>Confirmed</td>
+            </tr>
+
+            <tr>
+                <td>102</td>
+                <td>Sleeper Coach</td>
+                <td>Chennai</td>
+                <td>Cancelled</td>
+            </tr>
+        </table>
+    </section>
+
+    <!-- Comments -->
+    <section class="section">
+        <h2>Comments and Reviews</h2>
+
+        <input type="text" placeholder="Enter Your Name">
+
+        <textarea rows="4"
+        placeholder="Write Your Comments"></textarea>
+
+        <select>
+            <option>Rate Your Journey</option>
+            <option>5 Stars</option>
+            <option>4 Stars</option>
+            <option>3 Stars</option>
+            <option>2 Stars</option>
+            <option>1 Star</option>
+        </select>
+
+        <button type="button">Submit Review</button>
+    </section>
+
+    <!-- Admin Panel -->
+    <section class="section" id="admin">
+        <h2>Admin Dashboard</h2>
+
+        <h3>Manage Bus Category</h3>
+        <input type="text" placeholder="Bus Category">
+        <button type="button">Add Category</button>
+
+        <h3>Update Bus Information</h3>
+        <input type="text" placeholder="Bus Name">
+        <input type="text" placeholder="Bus Type">
+        <input type="text" placeholder="Route Location">
+        <input type="number" placeholder="Available Seats">
+        <input type="number" placeholder="Ticket Price">
+        <input type="file">
+        <textarea placeholder="Bus Description"></textarea>
+        <button type="button">Add / Update Bus</button>
+
+        <h3>Manage Registered Users</h3>
+        <button type="button">View Users</button>
+
+        <h3>Manage News</h3>
+        <input type="text" placeholder="Enter News">
+        <button type="button">Publish News</button>
+
+        <h3>Report Generation</h3>
+        <button type="button">Generate Report</button>
+    </section>
+
+</div>
+
+<footer>
+    <p>Online Bus Ticket Booking System</p>
+    <p>Copyright © 2026 All Rights Reserved</p>
+</footer>
+
+</body>
+</html>

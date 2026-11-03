@@ -1,0 +1,475 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Online Train Reservation System</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f1f5f9;
+        }
+
+        header {
+            background: #003366;
+            color: white;
+            text-align: center;
+            padding: 25px;
+        }
+
+        nav {
+            background: #00509d;
+            padding: 15px;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 12px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: yellow;
+        }
+
+        .container {
+            width: 85%;
+            margin: 25px auto;
+        }
+
+        .section {
+            background: white;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px #ccc;
+        }
+
+        h2 {
+            color: #003366;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            color: #00509d;
+            margin: 15px 0 10px;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            border: 1px solid #aaa;
+            border-radius: 5px;
+        }
+
+        button {
+            background: #007bff;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background: #003366;
+        }
+
+        .train {
+            background: #e8f1ff;
+            padding: 18px;
+            margin: 12px 0;
+            border-radius: 8px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        th, td {
+            border: 1px solid #aaa;
+            padding: 12px;
+            text-align: center;
+        }
+
+        th {
+            background: #00509d;
+            color: white;
+        }
+
+        .seats {
+            display: grid;
+            grid-template-columns: repeat(4, 55px);
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .seats button {
+            background: green;
+        }
+
+        .seats .booked {
+            background: red;
+        }
+
+        .status {
+            color: green;
+            font-weight: bold;
+        }
+
+        footer {
+            background: #003366;
+            color: white;
+            text-align: center;
+            padding: 18px;
+        }
+
+        @media(max-width: 600px) {
+            .container {
+                width: 95%;
+            }
+
+            nav a {
+                display: inline-block;
+                margin: 7px;
+            }
+
+            table {
+                font-size: 12px;
+            }
+
+            th, td {
+                padding: 7px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>ONLINE TRAIN RESERVATION SYSTEM</h1>
+    <p>Book Your Train Tickets Easily and Securely</p>
+</header>
+
+<nav>
+    <a href="#home">Home</a>
+    <a href="#register">Register</a>
+    <a href="#login">Login</a>
+    <a href="#search">Search Train</a>
+    <a href="#booking">Booking</a>
+    <a href="#pnr">PNR Status</a>
+    <a href="#admin">Admin</a>
+</nav>
+
+<div class="container">
+
+    <!-- Home -->
+    <section class="section" id="home">
+        <h2>Welcome to Railway Reservation</h2>
+        <p>
+            This online train reservation system helps passengers
+            search trains, check seat availability, book tickets,
+            check PNR status and cancel reservations.
+        </p>
+    </section>
+
+    <!-- Registration -->
+    <section class="section" id="register">
+        <h2>Passenger Registration</h2>
+
+        <form>
+            <input type="text" placeholder="Full Name" required>
+            <input type="email" placeholder="Email Address" required>
+            <input type="tel" placeholder="Mobile Number">
+            <input type="text" placeholder="Address">
+            <input type="password" placeholder="Create Password" required>
+            <input type="password" placeholder="Confirm Password">
+            <button type="submit">Register</button>
+        </form>
+    </section>
+
+    <!-- Login -->
+    <section class="section" id="login">
+        <h2>Passenger Login</h2>
+
+        <form>
+            <input type="email" placeholder="Enter Email">
+            <input type="password" placeholder="Enter Password">
+            <button type="button">Login</button>
+            <p><a href="#forgot">Forgot Password?</a></p>
+        </form>
+    </section>
+
+    <!-- Forgot Password -->
+    <section class="section" id="forgot">
+        <h2>Forgot Password</h2>
+        <input type="email" placeholder="Enter Registered Email">
+        <button type="button">Reset Password</button>
+    </section>
+
+    <!-- Train Search -->
+    <section class="section" id="search">
+        <h2>Search Available Trains</h2>
+
+        <form>
+            <label>From Station</label>
+            <input type="text" placeholder="Enter Origin Station">
+
+            <label>To Station</label>
+            <input type="text" placeholder="Enter Destination Station">
+
+            <label>Journey Date</label>
+            <input type="date">
+
+            <label>Travel Class</label>
+            <select>
+                <option>Select Class</option>
+                <option>1 AC</option>
+                <option>2 AC</option>
+                <option>3 AC</option>
+                <option>Sleeper</option>
+                <option>General</option>
+            </select>
+
+            <button type="button">Search Trains</button>
+        </form>
+
+        <h2>Available Trains</h2>
+
+        <div class="train">
+            <h3>12727 - Godavari Express</h3>
+            <p>Route: Hyderabad to Visakhapatnam</p>
+            <p>Departure: 5:30 PM</p>
+            <p>Arrival: 6:00 AM</p>
+            <p>Available Seats: 45</p>
+            <p>Fare: Rs. 650</p>
+            <button type="button">Book Ticket</button>
+        </div>
+
+        <div class="train">
+            <h3>12603 - Chennai Express</h3>
+            <p>Route: Chennai to Hyderabad</p>
+            <p>Departure: 7:00 PM</p>
+            <p>Arrival: 8:00 AM</p>
+            <p>Available Seats: 30</p>
+            <p>Fare: Rs. 750</p>
+            <button type="button">Book Ticket</button>
+        </div>
+    </section>
+
+    <!-- Ticket Booking -->
+    <section class="section" id="booking">
+        <h2>Train Ticket Reservation</h2>
+
+        <h3>Journey Details</h3>
+
+        <input type="text" placeholder="Train Number">
+        <input type="text" placeholder="Origin Station">
+        <input type="text" placeholder="Destination Station">
+        <input type="date">
+
+        <select>
+            <option>Select Travel Class</option>
+            <option>1 AC</option>
+            <option>2 AC</option>
+            <option>3 AC</option>
+            <option>Sleeper</option>
+            <option>General</option>
+        </select>
+
+        <h3>Passenger Details</h3>
+
+        <input type="text" placeholder="Passenger Name">
+        <input type="number" placeholder="Age">
+
+        <select>
+            <option>Select Gender</option>
+            <option>Male</option>
+            <option>Female</option>
+            <option>Other</option>
+        </select>
+
+        <input type="number" placeholder="Number of Passengers">
+
+        <h3>Seat Availability</h3>
+
+        <p>Green = Available | Red = Booked</p>
+
+        <div class="seats">
+            <button type="button">1</button>
+            <button type="button">2</button>
+            <button type="button">3</button>
+            <button type="button">4</button>
+            <button type="button">5</button>
+            <button type="button" class="booked">6</button>
+            <button type="button">7</button>
+            <button type="button">8</button>
+        </div>
+
+        <h3>Payment Details</h3>
+
+        <select>
+            <option>Select Payment Mode</option>
+            <option>UPI</option>
+            <option>Debit Card</option>
+            <option>Credit Card</option>
+            <option>Net Banking</option>
+            <option>Offline Payment</option>
+        </select>
+
+        <input type="number" placeholder="Ticket Fare">
+
+        <button type="button">Pay and Confirm Booking</button>
+    </section>
+
+    <!-- Ticket Confirmation -->
+    <section class="section">
+        <h2>Ticket Confirmation</h2>
+
+        <p>PNR Number: 1234567890</p>
+        <p>Passenger Name: Raju</p>
+        <p>Train Name: Godavari Express</p>
+        <p>Journey Date: 15-11-2026</p>
+        <p class="status">Booking Status: Confirmed</p>
+
+        <button type="button" onclick="window.print()">
+            Print Ticket
+        </button>
+    </section>
+
+    <!-- PNR Status -->
+    <section class="section" id="pnr">
+        <h2>Check PNR Status</h2>
+
+        <input type="number" placeholder="Enter 10 Digit PNR Number">
+        <button type="button">Check Status</button>
+
+        <h3>PNR Details</h3>
+        <p>PNR Number: 1234567890</p>
+        <p>Train: Godavari Express</p>
+        <p>Seat Status: <span class="status">CNF - Confirmed</span></p>
+    </section>
+
+    <!-- Booking History -->
+    <section class="section">
+        <h2>Booking History</h2>
+
+        <table>
+            <tr>
+                <th>PNR Number</th>
+                <th>Train Name</th>
+                <th>Destination</th>
+                <th>Status</th>
+            </tr>
+
+            <tr>
+                <td>1234567890</td>
+                <td>Godavari Express</td>
+                <td>Visakhapatnam</td>
+                <td>Confirmed</td>
+            </tr>
+
+            <tr>
+                <td>1234567891</td>
+                <td>Chennai Express</td>
+                <td>Hyderabad</td>
+                <td>Waiting List</td>
+            </tr>
+        </table>
+    </section>
+
+    <!-- Ticket Cancellation -->
+    <section class="section">
+        <h2>Cancel Train Ticket</h2>
+
+        <input type="number" placeholder="Enter PNR Number">
+        <input type="text" placeholder="Passenger Name">
+
+        <button type="button">Cancel Ticket</button>
+    </section>
+
+    <!-- Refund Details -->
+    <section class="section">
+        <h2>Refund Details</h2>
+
+        <input type="number" placeholder="Enter PNR Number">
+        <input type="number" placeholder="Ticket Fare">
+
+        <label>Refund Percentage</label>
+        <select>
+            <option>50%</option>
+            <option>75%</option>
+            <option>100%</option>
+        </select>
+
+        <button type="button">Calculate Refund</button>
+    </section>
+
+    <!-- Admin Dashboard -->
+    <section class="section" id="admin">
+        <h2>Admin Dashboard</h2>
+
+        <h3>Manage Train Information</h3>
+
+        <input type="text" placeholder="Train Number">
+        <input type="text" placeholder="Train Name">
+        <input type="text" placeholder="Origin Station">
+        <input type="text" placeholder="Destination Station">
+        <input type="time" placeholder="Departure Time">
+        <input type="time" placeholder="Arrival Time">
+        <input type="number" placeholder="Available Seats">
+
+        <button type="button">Add / Update Train</button>
+
+        <h3>Manage Fare Details</h3>
+
+        <input type="number" placeholder="Enter Train Number">
+        <input type="number" placeholder="Enter Ticket Fare">
+
+        <select>
+            <option>Select Class</option>
+            <option>1 AC</option>
+            <option>2 AC</option>
+            <option>3 AC</option>
+            <option>Sleeper</option>
+        </select>
+
+        <button type="button">Update Fare</button>
+
+        <h3>Manage Passenger Details</h3>
+        <button type="button">View Registered Users</button>
+
+        <h3>Manage Reservations</h3>
+        <button type="button">View All Bookings</button>
+
+        <h3>Manage Refund Requests</h3>
+        <button type="button">Approve Refund</button>
+
+        <h3>Generate Reports</h3>
+        <button type="button">Generate Reservation Report</button>
+        <button type="button">Generate Payment Report</button>
+
+    </section>
+
+</div>
+
+<footer>
+    <p>Online Train Reservation System</p>
+    <p>Copyright © 2026 All Rights Reserved</p>
+</footer>
+
+</body>
+</html>
